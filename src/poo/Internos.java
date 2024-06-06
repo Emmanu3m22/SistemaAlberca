@@ -127,11 +127,17 @@ public class Internos extends DatosGrales implements Serializable
                     default ->
                     {
                         bandera = 2;
-                        System.out.println("El numero de control debe contener únicamente numeros");
+                        System.out.println("El numero de control debe contener únicamente numeros...");
                     }
                 }
                 if (bandera == 2)
                 {
+                    break;
+                }
+                if (compararNoCtrl(noCtrl))
+                {
+                    System.out.println("El numero de control ya ha sido ocupado por alguien mas...");
+                    bandera = 1;
                     break;
                 }
             }
@@ -139,9 +145,30 @@ public class Internos extends DatosGrales implements Serializable
         return noCtrl;
     }
 
+    public static boolean compararNoCtrl(String noCtrl)
+    {
+        for (int i = 0; i < DatosGrales.mat.size(); i++)
+        {
+            for (int j = 0; j < DatosGrales.mat.get(i).size(); j++)
+            {
+                DatosGrales per = DatosGrales.mat.get(i).get(j);
+                if (per instanceof Internos)
+                {
+                    if (((Internos) per).getNoCtrl().equals(noCtrl))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * Obtiene el número de semestre del usuario.
-     * @return Un int entre 1 y 13 (inclusivo), del semestre proporcionado por el usuario.
+     *
+     * @return Un int entre 1 y 13 (inclusivo), del semestre proporcionado por
+     * el usuario.
      */
     public static int obtenerSem()
     {
@@ -160,10 +187,16 @@ public class Internos extends DatosGrales implements Serializable
     }
 
     /**
-     * Función que permite al usuario seleccionar el grupo de tipo adulto que desee ingresando la clave deseada.
-     * Primero se revisa que hayan grupos de adultos creados para poder mostrarlos. Una vez validando que existan grupos, con
-     * ayuda de un for y del método getDatos() de los Grupos, se concatenan todos los grupos que cumplan con la condición de que el tipo sea igual a 'a'.
-     * @return Si existen grupos de adultos registrados, retorna el grupo elegido (como objeto); si no existen grupos de adultos registrados, retorna null.
+     * Función que permite al usuario seleccionar el grupo de tipo adulto que
+     * desee ingresando la clave deseada. Primero se revisa que hayan grupos de
+     * adultos creados para poder mostrarlos. Una vez validando que existan
+     * grupos, con ayuda de un for y del método getDatos() de los Grupos, se
+     * concatenan todos los grupos que cumplan con la condición de que el tipo
+     * sea igual a 'a'.
+     *
+     * @return Si existen grupos de adultos registrados, retorna el grupo
+     * elegido (como objeto); si no existen grupos de adultos registrados,
+     * retorna null.
      */
     public static Grupo seleccionarGrupoAdultos()
     {
@@ -209,13 +242,13 @@ public class Internos extends DatosGrales implements Serializable
     {
         return DatosGrales.costo * 0.5;
     }
-    
+
     @Override
     public double precio(double precio)
     {
         return precio - (precio * .50);
     }
-    
+
     @Override
     public void mostrarDatos()
     {
