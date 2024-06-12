@@ -136,10 +136,10 @@ public class AuxiliarClass
         {
             for (int j = 0; j < mat.get(i).size(); j++)
             {
-                mat.get(i).get(j).setPrecio(DatosGrales.costo);
+                mat.get(i).get(j).calcPrecio();
             }
         }
-        System.out.println("Precio cambiado con exito!");
+        System.out.println("Precio actualizado con exito!");
     }
 
 }

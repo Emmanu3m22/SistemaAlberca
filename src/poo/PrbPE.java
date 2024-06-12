@@ -536,7 +536,8 @@ public class PrbPE implements Serializable
                 }
                 case 11 ->
                 {
-                    
+                    AuxiliarClass a = new AuxiliarClass();
+                    a.cambiarPrecTodos(mat);
                 }
                 case 12 ->
                 {
