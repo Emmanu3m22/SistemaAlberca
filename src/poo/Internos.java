@@ -227,6 +227,11 @@ public class Internos extends DatosGrales implements Serializable
                 mensaje += "\nIngrese la clave del grupo al que desee ingresar:";
                 System.out.println(mensaje);
                 obj = Grupo.buscarGrupoInterno(LecturasBuffer.cadena(true));
+                if (obj.getTipo() == 'i')
+                {
+                    System.out.println("Grupo no disponible para adultos...");
+                    b = false;
+                }
                 if (obj == null)
                 {
                     System.out.println("Clave invalida, intente de nuevo...");
