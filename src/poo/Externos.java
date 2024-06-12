@@ -174,6 +174,11 @@ public class Externos extends DatosGrales
                 mensaje += "Ingrese la clave del grupo al que desee ingresar:";
                 System.out.println(mensaje);
                 obj = Grupo.buscarGrupoInterno(LecturasBuffer.cadena(true));
+                if (obj.getTipo() != 'i')
+                {
+                    System.out.println("Grupo no disponible para niños...");
+                    b = false;
+                }
                 if (obj == null)
                 {
                     System.out.println("Clave invalida, intente de nuevo...");
@@ -189,13 +194,13 @@ public class Externos extends DatosGrales
     {
         return DatosGrales.costo * 1.5;
     }
-    
+
     @Override
     public double precio(double precio)
     {
         return precio + (precio * .50);
     }
-    
+
     @Override
     public void mostrarDatos()
     {
