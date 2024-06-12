@@ -126,6 +126,7 @@ public class AuxiliarClass
                 indexGpo = i;
             }
         }
+     //hola
         System.out.println("El grupo con mayor cantidad de alumnos es aquel con clave: " + Grupo.arr.get(indexGpo).getCve() + " con " + cantAl + " alumnos.");
         return cantAl;
     }
