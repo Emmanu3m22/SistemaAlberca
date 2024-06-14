@@ -939,4 +939,9 @@ public class AuxiliarClass
         System.out.printf("%-15s %-10s %-10s %-10s%n", g.getCve(), g.getDiaStr(), g.getHora(), g.getTipoStr());
     }
 
+    public void modificarDatosUsuario()
+    {
+        
+    }
+
 }
