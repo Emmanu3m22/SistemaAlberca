@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import static poo.DatosGrales.mat;
 import static poo.Grupo.arr;
 import poo.LecturasBuffer;
-import static poo.DatosGrales.obtenerNom;
-import static poo.Grupo.obtenerCve;
 import static poo.AuxiliarClass.obtenerCve2;
 import static poo.AuxiliarClass.obtenerNom2;
 
@@ -25,7 +23,7 @@ public class PrbPE implements Serializable
     private static final long serialVersionUID = 1L;
     static Boolean firsTime;
     static Boolean case1;
-
+    public static AuxiliarClass ac = new AuxiliarClass();
     public static void main(String[] args)
     {
         firsTime = (Boolean) Archivos.cargarFirst("firsTime");
@@ -46,19 +44,19 @@ public class PrbPE implements Serializable
             {
                 case 1 ->
                 {
-                    int dia = Grupo.obtenerDia();
-                    String hora = Grupo.obtenerHora();
-                    char tipo = Grupo.obtenerTipo();
-                    String cve = Grupo.obtenerCve();
+                    int dia = ac.obtenerDia();
+                    String hora = ac.obtenerHora();
+                    char tipo = ac.obtenerTipo();
+                    String cve = ac.obtenerCve();
                     //Creación del grupo
                     Grupo g = new Grupo(dia, hora, tipo, cve);
                     if (Grupo.arr == null)
                     {
                         Grupo.arr = new ArrayList<>();
-                        DatosGrales.mat = new ArrayList<ArrayList<DatosGrales>>();
+                        DatosGrales.mat = new ArrayList<>();
                     }
                     Grupo.arr.add(g);
-                    ArrayList<DatosGrales> a = new ArrayList<DatosGrales>();
+                    ArrayList<DatosGrales> a = new ArrayList<>();
                     DatosGrales.mat.add(a);
                     case1 = true;
                 }
@@ -69,26 +67,26 @@ public class PrbPE implements Serializable
                         System.out.println("Primero cree un grupo");
                     } else
                     {
-                        int tipoPersona = DatosGrales.tipoPersona();
+                        int tipoPersona = ac.tipoPersona();
                         System.out.println("Todos los datos requeridos serán del o la interesada en inscribirse al servicio");
                         if (tipoPersona == 1)
                         {
                             //Internos
-                            Grupo g = Internos.seleccionarGrupoAdultos();
+                            Grupo g = ac.seleccionarGrupoAdultos();
                             if (g != null)
                             {
                                 Internos in = new Internos();
                                 //Obtención de datos
-                                String noCtrl = Internos.obtenerNoCtrl();
-                                int sem = Internos.obtenerSem();
-                                String nom = DatosGrales.obtenerNom();
-                                String dir = DatosGrales.obtenerDir();
-                                int tel = DatosGrales.obtenerTel();
-                                String correo = DatosGrales.obtenerCorreo();
-                                char nivel = DatosGrales.obtenerNivel();
+                                String noCtrl = ac.obtenerNoCtrl();
+                                int sem = ac.obtenerSem();
+                                String nom = ac.obtenerNom();
+                                String dir = ac.obtenerDir();
+                                int tel = ac.obtenerTel();
+                                String correo = ac.obtenerCorreo();
+                                char nivel = ac.obtenerNivel();
                                 //Creación de interno
                                 Internos i = new Internos(noCtrl, sem, nom, dir, tel, correo, nivel, g.getCve(), in.calcPrecio());
-                                int index = g.encontrarIndexGpo(g);
+                                int index = ac.encontrarIndexGpo(g);
                                 DatosGrales.mat.get(index).add(i);
                                 System.out.println(i.obtenerDatos());
                             }
@@ -97,23 +95,23 @@ public class PrbPE implements Serializable
                             //Externos
                             Grupo g;
                             Externos ex = new Externos();
-                            int edad = Externos.obtenerEdad();
+                            int edad = ac.obtenerEdad();
                             if (edad >= 18)
                             {
-                                g = Internos.seleccionarGrupoAdultos();
+                                g = ac.seleccionarGrupoAdultos();
                             } else
                             {
-                                g = Externos.seleccionarGrupoNinios();
+                                g = ac.seleccionarGrupoNinios();
                             }
                             if (g != null)
                             {
-                                String nom = DatosGrales.obtenerNom();
-                                String dir = DatosGrales.obtenerDir();
-                                int tel = DatosGrales.obtenerTel();
-                                String correo = DatosGrales.obtenerCorreo();
-                                char nivel = DatosGrales.obtenerNivel();
+                                String nom = ac.obtenerNom();
+                                String dir = ac.obtenerDir();
+                                int tel = ac.obtenerTel();
+                                String correo = ac.obtenerCorreo();
+                                char nivel = ac.obtenerNivel();
                                 Externos e = new Externos(edad, nom, dir, tel, correo, nivel, g.getCve(), ex.calcPrecio());
-                                int index = g.encontrarIndexGpo(g);
+                                int index = ac.encontrarIndexGpo(g);
                                 System.out.println(e.obtenerDatos());
                                 DatosGrales.mat.get(index).add(e);
                             }
@@ -136,6 +134,7 @@ public class PrbPE implements Serializable
 //                    DatosGrales.costo = cost;
                     //Código FRAN.
                     System.out.println(AuxiliarClass.modPrice());
+                    System.out.println("Precio nuevo = " + DatosGrales.costo);
                 }
                 case 4 ->
                 {
@@ -176,11 +175,11 @@ public class PrbPE implements Serializable
                             //Solicitar grupo viejo.
                             b = false;
                             String nom;
-                            String cve = Grupo.obtenerCveSinValidar();
-                            if (Grupo.buscarGpoCve(cve))
+                            String cve = ac.obtenerCveSinValidar();
+                            if (ac.buscarGpoCve(cve))
                             {
-                                Grupo gpo = Grupo.buscarGrupoInterno(cve);
-                                int indexGpoViejo = Grupo.encontrarIndex(cve);
+                                Grupo gpo = ac.buscarGrupoInterno(cve);
+                                int indexGpoViejo = ac.encontrarIndex(cve);
                                 //Validar que el grupo no esté vacío
                                 if (!DatosGrales.mat.get(indexGpoViejo).isEmpty())
                                 {
@@ -188,14 +187,14 @@ public class PrbPE implements Serializable
                                     Object persona;
                                     do
                                     {
-                                        nom = DatosGrales.obtenerNom();
-                                        persona = DatosGrales.buscarPersona(nom, indexGpoViejo);
+                                        nom = ac.obtenerNom();
+                                        persona = ac.buscarPersona(nom, indexGpoViejo);
                                         if (persona == null)
                                         {
                                             System.out.println("No hay alguna persona con ese nombre...");
                                         }
                                     } while (persona == null);
-                                    int indexPersona = DatosGrales.buscarIndexPersona(nom, indexGpoViejo);
+                                    int indexPersona = ac.buscarIndexPersona(nom, indexGpoViejo);
                                     if (persona != null)
                                     {
                                         //Impresión de datos de la persona.
@@ -214,13 +213,13 @@ public class PrbPE implements Serializable
                                         //Desplegar información de grupos.
                                         if (tipoGrupoViejo == 'a')
                                         {
-                                            System.out.println(Grupo.desplegarGrupos('a', indexGpoViejo));
+                                            System.out.println(ac.desplegarGrupos('a', indexGpoViejo));
                                         } else
                                         {
-                                            System.out.println(Grupo.desplegarGrupos('i', indexGpoViejo));
+                                            System.out.println(ac.desplegarGrupos('i', indexGpoViejo));
                                         }
                                         //Validar que existan grupos distintos para cambiarse de grupo.
-                                        if (Grupo.existenciaGpos(tipoGrupoViejo, indexGpoViejo))
+                                        if (ac.existenciaGpos(tipoGrupoViejo, indexGpoViejo))
                                         {
                                             //Dowhile para pedir clave del nuevo grupo
                                             int b1;
@@ -232,12 +231,12 @@ public class PrbPE implements Serializable
                                                 boolean b3;
 
                                                 b3 = false;
-                                                nvaCve = Grupo.obtenerCveSinValidar();
-                                                indexGpoNvo = Grupo.encontrarIndex(nvaCve);
+                                                nvaCve = ac.obtenerCveSinValidar();
+                                                indexGpoNvo = ac.encontrarIndex(nvaCve);
                                                 Grupo nvoGpo;
                                                 if (indexGpoNvo != -1)
                                                 {
-                                                    nvoGpo = Grupo.buscarGrupoInterno(nvaCve);
+                                                    nvoGpo = ac.buscarGrupoInterno(nvaCve);
                                                     if (nvoGpo.getTipo() == tipoGrupoViejo)
                                                     {
                                                         //Cambio de grupo
@@ -440,10 +439,10 @@ public class PrbPE implements Serializable
                             clave = "";
                             b = false;
                             //Pedir clave
-                            clave = Grupo.obtenerCveSinValidar();
-                            if (Grupo.buscarGpoCve(clave))
+                            clave = ac.obtenerCveSinValidar();
+                            if (ac.buscarGpoCve(clave))
                             {
-                                int index = Grupo.encontrarIndex(clave);
+                                int index = ac.encontrarIndex(clave);
                                 Grupo nvoGrupo;
                                 nvoGrupo = Grupo.arr.get(index);
                                 System.out.println(Grupo.consultarGrupos(nvoGrupo));
@@ -472,10 +471,10 @@ public class PrbPE implements Serializable
                             b = false;
                             System.out.println("Ingresa la clave del grupo");
                             clave = LecturasBuffer.cadena(true);
-                            Grupo g = Grupo.buscarGrupoInterno(clave);
+                            Grupo g = ac.buscarGrupoInterno(clave);
                             if (g != null)
                             {
-                                int index = Grupo.encontrarIndex(clave);
+                                int index = ac.encontrarIndex(clave);
                                 Grupo nvoGrupo;
                                 nvoGrupo = Grupo.arr.get(index);
                                 System.out.println(Grupo.consultarGrupos(nvoGrupo));
@@ -503,9 +502,9 @@ public class PrbPE implements Serializable
                             b = false;
                             System.out.println("Ingresa la clave del grupo");
                             clave = LecturasBuffer.cadena(true);
-                            if (Grupo.buscarGpoCve(clave))
+                            if (ac.buscarGpoCve(clave))
                             {
-                                int index = Grupo.encontrarIndex(clave);
+                                int index = ac.encontrarIndex(clave);
                                 Grupo nvoGrupo;
                                 nvoGrupo = Grupo.arr.get(index);
                                 System.out.println(Grupo.consultarGrupos(nvoGrupo));
@@ -567,7 +566,7 @@ public class PrbPE implements Serializable
         System.out.println("8. Consulta externos");
         System.out.println("9. Encontrar grupo");
         System.out.println("10. Grupo con mas alumnos");
-        System.out.println("11. En construccion...");
+        System.out.println("11. Actualizar precio");
         System.out.println("12. Salir del programa");
         System.out.println("Seleccione una opcion");
         return LecturasBuffer.entero(true);
