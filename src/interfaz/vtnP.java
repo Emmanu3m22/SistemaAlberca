@@ -4,13 +4,16 @@
  */
 package interfaz;
 
+import poo.GuardarUsuario;
+import poo.RegistroUsuario;
+
 /**
  *
  * @author emmor
  */
 public class vtnP extends javax.swing.JFrame
 {
-    
+    public static RegistroUsuario u = new RegistroUsuario();
     int xMouse, yMouse;
     
     /**
