@@ -20,6 +20,7 @@ import static poo.AuxiliarClass.obtenerNom2;
 public class PrbPE implements Serializable
 {
 
+    //Hola mundoooooooo
     private static final long serialVersionUID = 1L;
     static Boolean firsTime;
     static Boolean case1;
