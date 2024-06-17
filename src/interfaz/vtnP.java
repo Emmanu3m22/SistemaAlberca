@@ -23,7 +23,7 @@ public class vtnP extends javax.swing.JFrame
     {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,15 +51,16 @@ public class vtnP extends javax.swing.JFrame
         setResizable(false);
         setSize(new java.awt.Dimension(233, 144));
 
-        background.setBackground(new java.awt.Color(152, 193, 217));
+        background.setBackground(new java.awt.Color(29, 42, 98));
         background.setToolTipText("");
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        titulo.setBackground(new java.awt.Color(0, 153, 153));
         titulo.setFont(new java.awt.Font("Codec Cold Trial", 0, 48)); // NOI18N
-        titulo.setForeground(new java.awt.Color(50, 57, 85));
+        titulo.setForeground(new java.awt.Color(245, 243, 216));
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Sistema Alberca");
-        background.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 550, -1));
+        background.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 550, -1));
 
         btnExit.setBackground(new java.awt.Color(153, 0, 0));
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -94,8 +95,8 @@ public class vtnP extends javax.swing.JFrame
 
         background.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 0, -1, -1));
 
-        header.setBackground(new java.awt.Color(152, 193, 217));
-        header.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        header.setBackground(new java.awt.Color(29, 42, 98));
+        header.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
         {
             public void mouseDragged(java.awt.event.MouseEvent evt)
@@ -124,10 +125,11 @@ public class vtnP extends javax.swing.JFrame
 
         background.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 30));
 
-        btnUsuario.setBackground(new java.awt.Color(238, 108, 77));
+        btnUsuario.setBackground(new java.awt.Color(67, 113, 24));
 
-        vtnUsuarioo.setBackground(new java.awt.Color(238, 108, 77));
+        vtnUsuarioo.setBackground(new java.awt.Color(233, 162, 124));
         vtnUsuarioo.setFont(new java.awt.Font("Codec Cold Trial", 0, 12)); // NOI18N
+        vtnUsuarioo.setForeground(new java.awt.Color(255, 255, 255));
         vtnUsuarioo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         vtnUsuarioo.setText("Usuario");
         vtnUsuarioo.setToolTipText("");
@@ -153,12 +155,21 @@ public class vtnP extends javax.swing.JFrame
 
         background.add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 120, 40));
 
-        btnAdimn.setBackground(new java.awt.Color(61, 90, 128));
+        btnAdimn.setBackground(new java.awt.Color(175, 208, 110));
         btnAdimn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        btnAdminn.setBackground(new java.awt.Color(175, 208, 110));
         btnAdminn.setFont(new java.awt.Font("Codec Cold Trial", 0, 12)); // NOI18N
+        btnAdminn.setForeground(new java.awt.Color(51, 51, 51));
         btnAdminn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAdminn.setText("Administrador");
+        btnAdminn.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                btnAdminnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnAdimnLayout = new javax.swing.GroupLayout(btnAdimn);
         btnAdimn.setLayout(btnAdimnLayout);
@@ -177,9 +188,10 @@ public class vtnP extends javax.swing.JFrame
 
         background.add(btnAdimn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 120, 40));
 
-        txtEntrada.setForeground(new java.awt.Color(50, 57, 85));
-        txtEntrada.setText("Seleccione una opcion");
-        background.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+        txtEntrada.setFont(new java.awt.Font("Codec Cold Trial", 0, 18)); // NOI18N
+        txtEntrada.setForeground(new java.awt.Color(245, 243, 216));
+        txtEntrada.setText("Seleccione una opcion para continuar");
+        background.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,6 +212,7 @@ public class vtnP extends javax.swing.JFrame
 
     private void vtnUsuariooMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_vtnUsuariooMouseClicked
     {//GEN-HEADEREND:event_vtnUsuariooMouseClicked
+        this.setVisible(false);
         new vtnUsuario().setVisible(true);
     }//GEN-LAST:event_vtnUsuariooMouseClicked
 
@@ -220,6 +233,11 @@ public class vtnP extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnExittMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnExittMouseClicked
+
+    private void btnAdminnMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnAdminnMouseClicked
+    {//GEN-HEADEREND:event_btnAdminnMouseClicked
+        new vtnAdmin().setVisible(true);
+    }//GEN-LAST:event_btnAdminnMouseClicked
 
     /**
      * @param args the command line arguments
